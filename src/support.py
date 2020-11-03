@@ -76,7 +76,7 @@ class Convert_Process(Attrs):
         self.paise = Paise(self.num_str)
         self.num_digit = self.convert_dict[self.length](self.amount)
         if self.amount == 0:
-            return "Rs." + self.paise.get_paise + ' ONLY'
+            return "Rs." + self.paise.get_paise() + ' ONLY'
         return self._return_string(
             self.num_digit.convert(), self.paise.get_paise()
             )
