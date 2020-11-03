@@ -9,7 +9,8 @@
  FILENAME | DESCRIPTION 
   :---:|--- 
 [__Currency Converter__](CurrencyToWords.py)| Application to be run.
-[__Support Module__](src/Support_Functions.py)| Module containing the required methods.
+[__Support Module__](src/support.py)| Module containing the classes that call the convert methods.
+[__Convert Methods Module__](src/digit_functions.py)| Module containing the methods to convert the number.
 [__Dictionary Data Module__](src/Dictionaries.py)| Module containing the dictionary of numbers represented in words.
 [__Test file__](test/Test_Convert.py)| File that runs unit tests on the application. 
 
