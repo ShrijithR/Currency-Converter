@@ -55,7 +55,9 @@ class Convert_Process(Attrs):
         return "Rs. " + words + paise + ' ONLY'
 
     def get_rupee_in_words(self):
-        from .digit_functions import Paise, Single_double, Hundreds, Thousand, Lakh
+        from .digit_functions import (
+            Paise, Single_double, Hundreds, Thousand, Lakh
+        )
         self.convert_dict = {
             1: Single_double, 2: Single_double, 
             3: Hundreds, 4: Thousand, 
