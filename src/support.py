@@ -1,9 +1,16 @@
 import logging, re
 
+"""Logging to check if the input has passed the steps of input validation
+to help figure out whether input validation works or if not, where the 
+program went wrong"""
 logging.basicConfig(level = logging.DEBUG, format = '%(message)s')
 logging.disable(logging.DEBUG)
 
+
 class InvalidInput(Exception):
+    """Subclass of class Exception to act as a base class
+    that requires the input string as an argument and from 
+    which respective exceptions are inherited"""
     def __init__(self, inputStr):
         super().__init__(inputStr)
         self.inputStr = inputStr
@@ -55,9 +62,7 @@ class Attrs:
         self.num_str = self.inputValidation.num_str
             
         self.split_list = self.num_str.split('.')
-        self.num_list = []
-        for i in self.split_list[0]:
-            self.num_list.append(int(i))
+        self.num_list = [int(i) for i in self.split_list[0]]
         self.length = len(self.num_list)
         self.amount = int(self.split_list[0])
 
@@ -74,7 +79,7 @@ class Convert_Process(Attrs):
     def get_rupee_in_words(self):
         """Calls the necessary method from equating the length
         of the amount to the key in the dictionary"""
-        from .digit_functions import (
+        from .digit_functions import ( #Import within the function to avoid circular import
             Paise, Single_double, Hundreds, Thousand, Lakh
             )
         self.convert_dict = {
@@ -110,3 +115,4 @@ class Main_Function_Call:
         else:
             self.convertProcess = Convert_Process(self.amount)
             return self.convertProcess.get_rupee_in_words()
+        
