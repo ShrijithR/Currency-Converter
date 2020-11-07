@@ -33,26 +33,26 @@ class Hundreds(Attrs):
     def convert(self):
         """Converts three digit numbeRs"""
         if self.amount == 0:
-            return    
-        
+            return            
         if self.length < 3:
             self.singleDouble = Single_double(self.amount)
             return self.singleDouble.convert()
         self.last_two_digits = int(''.join(self.num_str[1:]))
         self.singleDouble = Single_double(self.last_two_digits)
         
-        if self.singleDouble.convert():
+        try:
             return (
                 ' '.join((
                     one_nine[self.num_list[0]], 'Hundred', 'and', 
                     self.singleDouble.convert()
                 ))
             )
-        return (
-            ' '.join((
-                one_nine[self.num_list[0]], 'Hundred'
-            ))
-        )
+        except TypeError:
+            return (
+                ' '.join((
+                    one_nine[self.num_list[0]], 'Hundred'
+                ))
+            )
 
 class Thousand(Attrs):    
     def convert(self):
@@ -68,32 +68,34 @@ class Thousand(Attrs):
         self.hundreds = Hundreds(self.last_three_digits)
         
         if self.length == 4:
-            if self.hundreds.convert():
+            try:
                 return (
                 ' '.join((
                 self.singleDouble.convert(), 'Thousand', 
                 self.hundreds.convert()
                     ))
                 )
-            return (
-                ' '.join((
-                self.singleDouble.convert(), 'Thousand'
-                ))
-            )
+            except TypeError:
+                return (
+                    ' '.join((
+                    self.singleDouble.convert(), 'Thousand'
+                    ))
+                )
         self.singleDouble = Single_double(int(''.join(self.num_str[:2])))
         
-        if self.hundreds.convert():
+        try:
             return (
             ' '.join((
             self.singleDouble.convert(), 'Thousand', 
             self.hundreds.convert()
                 ))
             )
-        return (
-            ' '.join((
-            self.singleDouble.convert(), 'Thousand'
-            ))
-        )
+        except TypeError:
+            return (
+                ' '.join((
+                self.singleDouble.convert(), 'Thousand'
+                ))
+            )
 
 class Lakh(Attrs):
     def convert(self):
@@ -109,16 +111,16 @@ class Lakh(Attrs):
         self.thousand = Thousand(self.last_five_digits)
         self.singleDouble = Single_double(self.num_list[0])
         
-        if self.thousand.convert():
+        try:
             return (
             ' '.join((
             self.singleDouble.convert(), 'Lakh', 
             self.thousand.convert()
                 ))
             )
-        
-        return (
-            ' '.join((
-            self.singleDouble.convert(), 'Lakh'
-            ))
-        )
+        except TypeError:
+            return (
+                ' '.join((
+                self.singleDouble.convert(), 'Lakh'
+                ))
+            )
