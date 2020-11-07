@@ -45,7 +45,7 @@ class Input_Validation():
         logging.debug("Passed limit")
         
         if float(self.num_str) == 0:
-            raise InputZero('0')
+            raise InputZero('Rs. Zero')
         logging.debug("Passed zero")
 
 class Attrs:
