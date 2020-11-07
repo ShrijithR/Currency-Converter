@@ -1,8 +1,6 @@
 import logging, re
 
-"""Logging to check if the input has passed the steps of input validation
-to help figure out whether input validation works or if not, where the 
-program went wrong"""
+"""Logging at various conditions to help find out where the error has occured"""
 logging.basicConfig(level = logging.DEBUG, format = '%(message)s')
 logging.disable(logging.DEBUG)
 
